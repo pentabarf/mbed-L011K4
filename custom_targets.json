@@ -1,0 +1,33 @@
+{
+    "L011K4": {
+        "inherits": ["MCU_STM32_BAREMETAL"],
+        "core": "Cortex-M0+",
+        "extra_labels_add": ["STM32L0", "STM32L011K4"],
+        "config": {
+            "clock_source": {
+                "help": "Mask value : USE_PLL_HSE_EXTC | USE_PLL_HSE_XTAL (need HW patch) | USE_PLL_HSI",
+                "value": "USE_PLL_HSE_EXTC|USE_PLL_HSI",
+                "macro_name": "CLOCK_SOURCE"
+            },
+            "lpticker_lptim": {
+                "help": "This target supports LPTIM. Set value 1 to use LPTIM for LPTICKER, or 0 to use RTC wakeup timer",
+                "value": 1
+            }
+        },
+        "overrides": { "lpticker_delay_ticks": 0 },
+        "macros_add": [
+            "EXTRA_IDLE_STACK_REQUIRED"
+        ],
+        "detect_code": ["0780"],
+        "device_has_add": [
+            "CRC",
+            "FLASH"
+        ],
+        "device_name": "STM32L011K4",
+        "supported_c_libs": {
+            "arm": ["std", "small"],
+            "gcc_arm": ["std", "small"],
+            "iar": ["std"]
+        }
+    }
+}
